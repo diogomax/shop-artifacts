@@ -1,0 +1,11 @@
+service {
+	"SHOPDB"."shop.model::shop.Supplier" as "Suppliers";
+	
+	"SHOPDB"."shop.model::shop.Category" as "Categories"
+	navigates ("Subs" as "SubCategories");
+	"SHOPDB"."shop.model::shop.SubCategory" as "SubCategories";
+	association "Subs"
+	principal "Categories"("Id") multiplicity "1"
+	dependent "SubCategories"("CategoryKey.Id") multiplicity "*";
+}
+

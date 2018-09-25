@@ -19,9 +19,9 @@ context shop {
     
     Entity SubCategory {
       key Id: hana.SMALLINT NOT NULL;
-        CategoryId: Association to Category;
         Name: String(50);
         Inactive: hana.CHAR(1);
+        CategoryKey: Association to Category;
     };
     
     Entity Collection {
@@ -39,15 +39,15 @@ context shop {
 	
 	Entity Product {
 	   key Id: Integer NOT NULL;
-		SupplierId: Association to Supplier;
+		SupplierKey: Association to Supplier;
 		Name: String(50);
         ExternalRef: String(50);
         Picture: LargeString;
-        SubCategoryId: Association to SubCategory;
-        CollectionId: Association to Collection;
-        MeasureUnitId: Association to MeasureUnit;
         Barcode: LargeString;
         Inactive: hana.CHAR(1);
+        SubCategoryKey: Association to SubCategory;
+        CollectionKey: Association to Collection;
+        MeasureUnitKey: Association to MeasureUnit;
 	};
 	
 	Entity OrderType {
@@ -76,48 +76,48 @@ context shop {
     
     Entity OrderHeader {
 	   key Id: Integer NOT NULL;
-        OrderTypeId: Association to OrderType;
-		SupplierId: Association to Supplier;
 		Description: String(50);
         Invoice: LargeString;
         OrderedDate: UTCTimestamp; // timestamp'2011-12-31 23:59:59'
         ShipmentDate: UTCTimestamp;
         ArrivalDate: UTCTimestamp;
-        StatusId: Association to OrderStatus;
+        OrderTypeKey: Association to OrderType;
+		SupplierKey: Association to Supplier;
+        StatusKey: Association to OrderStatus;
 	};
     
     Entity OrderPrice {
-        key OrderId: Association to OrderHeader;
+        key OrderKey: Association to OrderHeader;
         TotalPrice: Decimal(10,2);
         FreightCost: Decimal(10,2);
         Discount: Decimal(10,2); 
-        PriceUnitId: Association to PriceUnit;
-        PaymentMethodId: Association to PaymentMethod;
         IstallmentsQuantity: hana.SMALLINT NOT NULL;
         EntryIstallment: Decimal(10,2); 
         ExpicityDayOfMonth: hana.TINYINT;
+        PriceUnidKey: Association to PriceUnit;
+        PaymentMethodKey: Association to PaymentMethod; 
     };
     
     Entity OrderItem {
-        key OrderId: Association to OrderHeader;
-        key ProductId: Association to Product;
         Quantity: hana.TINYINT NOT NULL;
         UnitPrice: Decimal(10,2);
         TotalPrice: Decimal(10,2);
         InStock: hana.CHAR(1); 
+        key OrderKey: Association to OrderHeader;
+        key ProductKey: Association to Product;
     };
     
     Entity ProductSuggestedPrice{
-        key ProductId: Association to Product;
         key Id: hana.SMALLINT NOT NULL; // 32,767
         ProfitPercentage: Decimal(3,2);
         ValidFrom: UTCTimestamp;
         ValidTo: UTCTimestamp;
+        key ProductKey: Association to Product;
     }; 
-    
+     
     Entity Stock {
-        ProductId: Association to Product;
         Quantity: Integer;
+        ProductKey: Association to Product;
     }
     
 }
