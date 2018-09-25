@@ -1,0 +1,120 @@
+import = [{
+    table = "shop.model::shop.Supplier";
+    schema = "SHOPDB";
+    file = "shop.model.import.samples:supplier.csv";
+    header = false;
+    delimField = ";";
+    delimEnclosing = "\"";  
+},
+{
+    table = "shop.model::shop.Category";
+    schema = "SHOPDB";
+    file = "shop.model.import.samples:category.csv";
+    header = false;
+    delimField = ";"; 
+    delimEnclosing = "\"";   
+},
+{
+    table = "shop.model::shop.SubCategory";
+    schema = "SHOPDB";
+    file = "shop.model.import.samples:SubCategory.csv";
+    header = false;
+    delimField = ";"; 
+    delimEnclosing = "\"";    
+},
+{
+    table = "shop.model::shop.Collection";
+    schema = "SHOPDB";
+    file = "shop.model.import.samples:Collection.csv";
+    header = false; 
+    delimField = ";"; 
+    delimEnclosing = "\"";    
+},
+{
+    table = "shop.model::shop.MeasureUnit";
+    schema = "SHOPDB";
+    file = "shop.model.import.samples:MeasureUnit.csv"; 
+    header = false;
+    delimField = ";"; 
+    delimEnclosing = "\"";
+},
+{
+    table = "shop.model::shop.Product";
+    schema = "SHOPDB";
+    file = "shop.model.import.samples:Product.csv"; 
+    header = false;
+    delimField = ";"; 
+    delimEnclosing = "\"";
+},
+{
+    table = "shop.model::shop.OrderType";
+    schema = "SHOPDB";
+    file = "shop.model.import.samples:OrderType.csv"; 
+    header = false;
+    delimField = ";"; 
+    delimEnclosing = "\"";
+},
+{
+    table = "shop.model::shop.OrderStatus";
+    schema = "SHOPDB";
+    file = "shop.model.import.samples:OrderStatus.csv"; 
+    header = false;
+    delimField = ";"; 
+    delimEnclosing = "\"";
+},
+{
+    table = "shop.model::shop.PriceUnit";
+    schema = "SHOPDB";
+    file = "shop.model.import.samples:PriceUnit.csv"; 
+    header = false;
+    delimField = ";"; 
+    delimEnclosing = "\"";
+},
+{
+    table = "shop.model::shop.PaymentMethod";
+    schema = "SHOPDB";
+    file = "shop.model.import.samples:PaymentMethod.csv"; 
+    header = false;
+    delimField = ";"; 
+    delimEnclosing = "\"";
+},
+{
+    table = "shop.model::shop.OrderHeader";
+    schema = "SHOPDB";
+    file = "shop.model.import.samples:OrderHeader.csv"; 
+    header = false;
+    delimField = ";"; 
+    delimEnclosing = "\""; 
+},
+{
+    table = "shop.model::shop.OrderPrice";
+    schema = "SHOPDB";
+    file = "shop.model.import.samples:OrderPrice.csv";  
+    header = false;
+    delimField = ";"; 
+    delimEnclosing = "\""; 
+},
+{
+    table = "shop.model::shop.OrderItem";
+    schema = "SHOPDB";
+    file = "shop.model.import.samples:OrderItem.csv";  
+    header = false;
+    delimField = ";"; 
+    delimEnclosing = "\""; 
+},
+{
+    table = "shop.model::shop.ProductSuggestedPrice";
+    schema = "SHOPDB";
+    file = "shop.model.import.samples:ProductSuggestedPrice.csv";  
+    header = false;
+    delimField = ";"; 
+    delimEnclosing = "\"";   
+},
+{
+    table = "shop.model::shop.Stock";
+    schema = "SHOPDB";
+    file = "shop.model.import.samples:Stock.csv";  
+    header = false;
+    delimField = ";"; 
+    delimEnclosing = "\"";   
+}];

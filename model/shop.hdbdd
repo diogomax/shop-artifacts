@@ -7,8 +7,8 @@ context shop {
 		key Id: hana.SMALLINT NOT NULL; // 32,767
 		Name: String(50);
 		Site: String(100);
-        Logo: LargeString;
-        Inactive: hana.CHAR(1);
+        Logo: LargeString null;
+        Inactive: hana.CHAR(1) null;
 	};
     
     Entity Category {
@@ -109,7 +109,7 @@ context shop {
     
     Entity ProductSuggestedPrice{
         key Id: hana.SMALLINT NOT NULL; // 32,767
-        ProfitPercentage: Decimal(3,2);
+        ProfitPercentage: Decimal(5,2);
         ValidFrom: UTCTimestamp;
         ValidTo: UTCTimestamp;
         key ProductKey: Association to Product;
