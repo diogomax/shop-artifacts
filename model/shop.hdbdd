@@ -1,0 +1,123 @@
+namespace shop.model;
+@Schema: 'SHOPDB' 
+
+context shop {
+
+	Entity Supplier {
+		key Id: hana.SMALLINT NOT NULL; // 32,767
+		Name: String(50);
+		Site: String(100);
+        Logo: LargeString;
+        Inactive: hana.CHAR(1);
+	};
+    
+    Entity Category {
+      key Id: hana.SMALLINT NOT NULL;
+        Name: String(50);
+        Inactive: hana.CHAR(1);
+    };
+    
+    Entity SubCategory {
+      key Id: hana.SMALLINT NOT NULL;
+        CategoryId: Association to Category;
+        Name: String(50);
+        Inactive: hana.CHAR(1);
+    };
+    
+    Entity Collection {
+      key Id: hana.SMALLINT NOT NULL;
+        Name: String(50);
+        Inactive: hana.CHAR(1);
+    };
+    
+     Entity MeasureUnit {
+       key Id: String(3) NOT NULL;
+         Name: String(50);
+         Code: String(10);
+         Inactive: hana.CHAR(1);
+     };
+	
+	Entity Product {
+	   key Id: Integer NOT NULL;
+		SupplierId: Association to Supplier;
+		Name: String(50);
+        ExternalRef: String(50);
+        Picture: LargeString;
+        SubCategoryId: Association to SubCategory;
+        CollectionId: Association to Collection;
+        MeasureUnitId: Association to MeasureUnit;
+        Barcode: LargeString;
+        Inactive: hana.CHAR(1);
+	};
+	
+	Entity OrderType {
+	   key Id: hana.TINYINT NOT NULL;
+        Name: String(32);
+	};
+    
+    Entity OrderStatus {
+	   key Id: hana.TINYINT NOT NULL;
+        Name: String(32);
+        Inactive: hana.CHAR(1);
+    };
+    
+    Entity PriceUnit {
+	   key Id: String(3) NOT NULL;
+        Name: String(50);
+        Code: String(10);
+        Inactive: hana.CHAR(1);
+    };
+    
+    Entity PaymentMethod {
+	   key Id: String(5) NOT NULL;
+        Name: String(50);
+        Inactive: hana.CHAR(1);
+    };
+    
+    Entity OrderHeader {
+	   key Id: Integer NOT NULL;
+        OrderTypeId: Association to OrderType;
+		SupplierId: Association to Supplier;
+		Description: String(50);
+        Invoice: LargeString;
+        OrderedDate: UTCTimestamp; // timestamp'2011-12-31 23:59:59'
+        ShipmentDate: UTCTimestamp;
+        ArrivalDate: UTCTimestamp;
+        StatusId: Association to OrderStatus;
+	};
+    
+    Entity OrderPrice {
+        key OrderId: Association to OrderHeader;
+        TotalPrice: Decimal(10,2);
+        FreightCost: Decimal(10,2);
+        Discount: Decimal(10,2); 
+        PriceUnitId: Association to PriceUnit;
+        PaymentMethodId: Association to PaymentMethod;
+        IstallmentsQuantity: hana.SMALLINT NOT NULL;
+        EntryIstallment: Decimal(10,2); 
+        ExpicityDayOfMonth: hana.TINYINT;
+    };
+    
+    Entity OrderItem {
+        key OrderId: Association to OrderHeader;
+        key ProductId: Association to Product;
+        Quantity: hana.TINYINT NOT NULL;
+        UnitPrice: Decimal(10,2);
+        TotalPrice: Decimal(10,2);
+        InStock: hana.CHAR(1); 
+    };
+    
+    Entity ProductSuggestedPrice{
+        key ProductId: Association to Product;
+        key Id: hana.SMALLINT NOT NULL; // 32,767
+        ProfitPercentage: Decimal(3,2);
+        ValidFrom: UTCTimestamp;
+        ValidTo: UTCTimestamp;
+    }; 
+    
+    Entity Stock {
+        ProductId: Association to Product;
+        Quantity: Integer;
+    }
+    
+}
