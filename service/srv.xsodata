@@ -1,11 +1,24 @@
 service {
 	"SHOPDB"."shop.model::shop.Supplier" as "Suppliers";
 	
-	"SHOPDB"."shop.model::shop.Category" as "Categories"
-	navigates ("Subs" as "SubCategories");
-	"SHOPDB"."shop.model::shop.SubCategory" as "SubCategories";
-	association "Subs"
-	principal "Categories"("Id") multiplicity "1"
-	dependent "SubCategories"("CategoryKey.Id") multiplicity "*";
+	"SHOPDB"."shop.model::shop.OrderType" as "OrderTypes" navigates ("TypeToOrders" as "OrdersPerType");
+	
+	"SHOPDB"."shop.model::shop.OrderHeader" as "Orders" navigates ("ToItems" as "OrderItems");
+
+	"SHOPDB"."shop.model::shop.OrderItem" as "Items";
+	
+	association "TypeToOrders"
+	principal "OrderTypes"("Id") multiplicity "1"
+	dependent "Orders"("OrderTypeKey.Id") multiplicity "*";
+
+	association "ToItems"
+	principal "Orders"("Id") multiplicity "1"
+	dependent "Items"("OrderKey.Id") multiplicity "*";
+
+	"SHOPDB"."shop.model::shop.Product" as "Products";
 }
+
+
+
+
 
